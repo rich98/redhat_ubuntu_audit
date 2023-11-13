@@ -66,6 +66,9 @@ if [ -n "$(command -v ufw)" ]; then
 fi
 if [ -n "$(command -v firewall-cmd)" ]; then
   firewall-cmd --list-all >> $output_file
+  echo ### iptables vhevk ###
+  echo -e "\n" >> $output_file
+  iptables -L >> $output_file
   echo -e "\n" >> $output_file
 fi
 
