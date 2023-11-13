@@ -29,7 +29,7 @@ if [ -n "$(command -v yum)" ]; then
   echo "### Installed Packages (Red Hat) ###" >> $output_file
   yum list installed >> $output_file
   echo -e "\n" >> $output_file
-# et source for selinux
+# set source for selinux
   source /etc/sysconfig/selinux
   echo checking SELINUX >> $output_file
   echo SELINUX@ $SELINUX >> $output_file
