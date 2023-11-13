@@ -7,18 +7,20 @@ output_file="system_audit.txt"
 date > $output_file
 
 # Basic system information
-echo "### Basic System Information ###" >> $output_file
+echo "### Basic System Information using hostnamectl ###" >> $output_file
 hostnamectl >> $output_file
+echo "### whoami ###
+whoami >> $output_file
 echo -e "\n" >> $output_file
 
 # List of installed packages (Ubuntu)
 if [ -n "$(command -v apt)" ]; then
-  echo "### Installed Packages (Ubuntu) ###" >> $output_file
+  echo "### Installed Packages apt list (Ubuntu) ###" >> $output_file
   apt list --installed >> $output_file
   >> $output_file
   echo Checking Apparmor >> $output_file
   apparmor_status >> $output_file
-  echo "###  Repositories in Apt ###" >> $output_file
+  echo "###  Repositories using apy-cache policy ###" >> $output_file
   # cat /etc/apt/sources.list >> $output_file
   apt-cache policy >> $output_file
   echo -e "\n" >> $output_file
@@ -26,29 +28,29 @@ fi
 
 # List of installed packages (Red Hat)
 if [ -n "$(command -v yum)" ]; then
-  echo "### Installed Packages (Red Hat) ###" >> $output_file
+  echo "### Installed Packages yum list installed (Red Hat) ###" >> $output_file
   yum list installed >> $output_file
   echo -e "\n" >> $output_file
 # set source for selinux
   source /etc/sysconfig/selinux
-  echo checking SELINUX >> $output_file
+  echo checking SELINUX /etc/sysconfig/selinux  >> $output_file
   echo SELINUX@ $SELINUX >> $output_file
   echo SELINUX TYPE: $SELINUXTYPE >> $output_file
-  echo "###  Repositories in Yum ###" >> $output_file
+  echo "###  Repositories you repolist ###" >> $output_file
   yum repolist >> $output_file
   echo -e "\n" >> $output_file
  
 fi
 
 # Users and groups
-echo "### Users and Groups ###" >> $output_file
+echo "### Users and Groups cat etcpasswd & group ###" >> $output_file
 cat /etc/passwd >> $output_file
 echo -e "\n" >> $output_file
 cat /etc/group >> $output_file
 echo -e "\n" >> $output_file
 
 # Password policies
-echo "### Password Policies ###" >> $output_file
+echo "### Password Policies pwck & grpck -r ###" >> $output_file
 if [ -n "$(command -v pwck)" ]; then
   pwck -r >> $output_file
   echo -e "\n" >> $output_file
@@ -59,7 +61,7 @@ if [ -n "$(command -v grpck)" ]; then
 fi
 
 # Firewall rules
-echo "### Firewall Rules ###" >> $output_file
+echo "### Firewall Rules ufw status firewall-cmd iptables ###" >> $output_file
 if [ -n "$(command -v ufw)" ]; then
   ufw status >> $output_file
   echo -e "\n" >> $output_file
@@ -73,17 +75,17 @@ if [ -n "$(command -v firewall-cmd)" ]; then
 fi
 
 # Running services
-echo "### Running Services ###" >> $output_file
+echo "### Running Services systemctl ###" >> $output_file
 systemctl list-units --type=service >> $output_file
 echo -e "\n" >> $output_file
 
 # Check for open ports
-echo "### Open Ports ###" >> $output_file
+echo "### Open Ports netstat ###" >> $output_file
 netstat -tuln >> $output_file
 echo -e "\n" >> $output_file
 
 # Check for listening processes
-echo "### Listening Processes ###" >> $output_file
+echo "### Listening Processes netstat ###" >> $output_file
 netstat -tulnp >> $output_file
 echo -e "\n" >> $output_file
 
