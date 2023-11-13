@@ -39,6 +39,14 @@ if [ -n "$(command -v yum)" ]; then
   echo "###  Repositories you repolist ###" >> $output_file
   yum repolist >> $output_file
   echo -e "\n" >> $output_file
+  # Check for open ports (Red hat)
+  echo "### Open Ports netstat (Red Hat) ###" >> $output_file
+  netstat -tuln >> $output_file
+  echo -e "\n" >> $output_file
+  # Check for listening processes
+  echo "### Listening Processes netstat (Red Hat) ###" >> $output_file
+  netstat -tulnp >> $output_file
+  echo -e "\n" >> $output_file
  
 fi
 
