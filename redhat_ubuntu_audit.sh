@@ -24,6 +24,14 @@ if [ -n "$(command -v apt)" ]; then
   # cat /etc/apt/sources.list >> $output_file
   apt-cache policy >> $output_file
   echo -e "\n" >> $output_file
+  # Check for open ports (ubuntu needs net-tools installed)
+  echo "### Open Ports netstat (Red Hat) ###" >> $output_file
+  netstat -tuln >> $output_file
+  echo -e "\n" >> $output_file
+  # Check for listening processes
+  echo "### Listening Processes netstat (ubuntu needs net-tools installed) ###" >> $output_file
+  netstat -tulnp >> $output_file
+  echo -e "\n" >> $output_fil
 fi
 
 # List of installed packages (Red Hat)
