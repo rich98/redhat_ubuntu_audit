@@ -28,10 +28,14 @@ if [ -n "$(command -v apt)" ]; then
   echo "### Open Ports netstat (Red Hat) ###" >> $output_file
   netstat -tuln >> $output_file
   echo -e "\n" >> $output_file
+  echo "if output is blank net-tools might not be installed" >> $output_file
+  echo -e "\n" >> $output_file
   # Check for listening processes
   echo "### Listening Processes netstat (ubuntu needs net-tools installed) ###" >> $output_file
   netstat -tulnp >> $output_file
-  echo -e "\n" >> $output_fil
+  echo -e "\n" >> $output_file
+  echo "if output is blank net-tools might not be installed" >> $output_file
+  echo -e "\n" >> $output_file
 fi
 
 # List of installed packages (Red Hat)
