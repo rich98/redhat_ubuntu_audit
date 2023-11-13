@@ -18,8 +18,10 @@ if [ -n "$(command -v apt)" ]; then
   >> $output_file
   echo Checking Apparmor >> $output_file
   apparmor_status >> $output_file
-  >> $output_file
-  
+  echo "###  Repositories in Apt ###" >> $output_file
+  # cat /etc/apt/sources.list >> $output_file
+  apt-cache policy >> $output_file
+  echo -e "\n" >> $output_file
 fi
 
 # List of installed packages (Red Hat)
@@ -32,6 +34,8 @@ if [ -n "$(command -v yum)" ]; then
   echo checking SELINUX >> $output_file
   echo SELINUX@ $SELINUX >> $output_file
   echo SELINUX TYPE: $SELINUXTYPE >> $output_file
+  echo "###  Repositories in Yum ###" >> $output_file
+  yum repolist >> $output_file
   echo -e "\n" >> $output_file
  
 fi
