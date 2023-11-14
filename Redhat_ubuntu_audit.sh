@@ -6,9 +6,6 @@ output_file="system_audit.txt"
 
 # Record the date and time of the audit
 date > $output_file
-echo "### Security classification notice ###" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" >> $output_file
 # Basic system information
 echo "### Basic System Information using hostnamectl ###" >> $output_file
 hostnamectl >> $output_file
@@ -103,7 +100,7 @@ if [ -n "$(command -v firewall-cmd)" ]; then
   echo -e "\n" >> $output_file
   
 fi
-echo The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE >> $output_file
+
 echo -e "\n" >> $output_file
 # Running services
 echo "### Running Services systemctl ###" >> $output_file
@@ -114,6 +111,6 @@ echo -e "\n" >> $output_file
 #echo "### Setuid and Setgid Files ###" >> $output_file
 #find / -type f \( -perm -4000 -o -perm -2000 \) -exec ls -la {} \; >> $output_file
 #echo -e "\n" >> $output_file
-echo The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE >> $output_file
+
 echo -e "\n" >> $output_file
 echo "Audit completed. Output saved to $output_file"
