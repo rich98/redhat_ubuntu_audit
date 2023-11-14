@@ -5,3 +5,12 @@
 Tested on the 2023 CSI ubuntu
 Tested on Redhat 9 enterprise
 #See sample captures
+
+
+
+Coming soon
+
+Better error handling
+
+better inspection for tools (Netstat)
+
