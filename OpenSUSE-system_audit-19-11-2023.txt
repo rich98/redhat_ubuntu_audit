@@ -1,4 +1,4 @@
-The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE
+
 
 
 Sun Nov 19 11:47:10 AM GMT 2023
@@ -1963,7 +1963,7 @@ java check
 If java returns no value and you belive java is installed check snap output. OpenJDK installed under snap does not respond to this command
 
 
-The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE
+
 
 
 ### Users and Groups cat etcpasswd & group ###
