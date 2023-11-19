@@ -1,5 +1,5 @@
 #!/bin/bash
-# Writen bty Richard Wadsworth ThalesUK
+# Writen bty Richard Wadsworth 
 # Audit script for Linux centos 7 unbuntu 18 or above
 # Output file
 comp=`hostname`
