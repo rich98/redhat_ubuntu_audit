@@ -1,6 +1,6 @@
 #!/bin/bash
-# Writen bty Richard Wadsworth ThalesUK
-# Audit script for Linux Unbuntu 14 or above and redhat 6.x and above
+# Writen bty Richard Wadsworth 
+# Audit script for Linux Unbuntu 18 or above and redhat 7.x and above
 # Output file
 # set name of file
 comp=`hostname`
