@@ -4,11 +4,11 @@
 #Tested on Ubuntu desktop
 Tested on the 2023 CSI ubuntu
 Tested on Redhat 9 enterprise
-#See sample captures
-
-
+#See sample capture
 
 Coming soon
+
+nOTE cve.sh only works on ubunt 20 lts or above
 
 Better error handling
 
