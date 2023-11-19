@@ -1,4 +1,4 @@
-The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE
+
 
 
 Sun 19 Nov 14:07:25 GMT 2023
@@ -1277,8 +1277,6 @@ for more ionfomation please see Red Hat web site access.redhat.com/security/vuln
 java check
 If java returns no value and you belive java is installed check snap output. OpenJDK installed under snap does not respond to this command
 
-
-The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE
 
 
 ### Users and Groups cat etcpasswd & group ###
