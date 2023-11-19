@@ -6,11 +6,6 @@
 comp=`hostname`
 today=`date +%d-%m-%Y`
 output_file="$comp-system_audit-$today.txt"
-# Notice
-echo "### Security classification notice ###" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" > $output_file
-echo -e "\n" >> $output_file
 # Record the date and time of the audit
 date >> $output_file
 # Basic system information
@@ -139,14 +134,6 @@ fi
 echo java check >> $output_file
 java --version >> $output_file
 echo If java returns no value and you belive java is installed check snap output. OpenJDK installed under snap does not respond to this command >> $output_file
-echo -e "\n" >> $output_file
-
-
-# Notice
-echo "### Security classification notice ###" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" >> $output_file
-echo "### Security classification notice ###" 
 echo -e "\n" >> $output_file
 
 # Users and groups
