@@ -8,7 +8,7 @@ Tested on Redhat 9 enterprise
 
 Coming soon
 
-nOTE cve.sh only works on ubunt 20 lts or above
+Note cve.sh only works on ubunt 20 lts or above
 
 Better error handling
 
