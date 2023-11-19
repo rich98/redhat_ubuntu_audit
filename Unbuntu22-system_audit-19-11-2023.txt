@@ -1,4 +1,4 @@
-The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE
+
 
 
 Sun 19 Nov 11:32:40 GMT 2023
@@ -2019,9 +2019,6 @@ openjdk 19.0.2 2023-01-17
 OpenJDK Runtime Environment (build 19.0.2+7-Ubuntu-0ubuntu322.04)
 OpenJDK 64-Bit Server VM (build 19.0.2+7-Ubuntu-0ubuntu322.04, mixed mode, sharing)
 If java returns no value and you belive java is installed check snap output. OpenJDK installed under snap does not respond to this command
-
-
-The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE
 
 
 ### Users and Groups cat etcpasswd & group ###
