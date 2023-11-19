@@ -1,14 +1,10 @@
 #!/bin/bash
 # Writen bty Richard Wadsworth ThalesUK
-# Audit script for Linux Unbuntu 14 or above and redhat 6.x and above
+# Audit script for Linux centos 7 unbuntu 18 or above
 # Output file
 comp=`hostname`
 today=`date +%d-%m-%Y`
 output_file="$comp-system_audit$today.txt"
-echo "### Security classification notice ###" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" > $output_file
-echo -e "\n" >> $output_file
 # Record the date and time of the audit
 date >> $output_file
 # Basic system information
@@ -106,11 +102,6 @@ java -version >> $output_file
 echo check for oracle java
 java --vesion >> $output_file
 echo -e "\n" >> $output_file
-echo "### Security classification notice ###" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" >> $output_file
-echo -e "\n" >> $output_file
-
 
 # Users and groups
 echo "### Users and Groups cat etcpasswd & group ###" >> $output_file
