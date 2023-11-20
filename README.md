@@ -1,3 +1,4 @@
+# Read me notes
 redhat_ubuntu_audit
 needs to be run as sudo in older Linux versions you have to be root (su) if the user is not in the sudo group
 For details info see data natrix.pdf
