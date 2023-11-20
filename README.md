@@ -23,6 +23,7 @@ Please see the data matrix.pdf for more info.
 
 The CVE.sh is for ubuntu LTS 20 and above and will be update around twice a year (ish)
 This tests the environment for CVE vulnerabilities likeley this will spin off in to another repo 
+By the way the for Centos\Rocky yum updateinfo list security --installed command is missing, paid service in enterprise versions. TYhis will in time will get branched off properly and be maintained as its own project
 
 Over the next weeksa months I will start to add error checking just to tidy things up.
 
