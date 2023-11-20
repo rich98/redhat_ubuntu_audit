@@ -31,4 +31,5 @@ Need a feature? Why not ask for it!
 What other versions of linux test? Hazppy to just point me at the ISO
 Feel free to conbtribute.
 
-Woulkd you like to see process info?
+Would you like to see process info?
+Everything is shared under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
