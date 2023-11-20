@@ -2,6 +2,27 @@
 # needs to be run as sudo in older linux versions you have to be root (su) if the user is not in the sudo group
 # For detailes info see data natrix.pdf
 
+What is being audited?
+Static Hostname
+Transient Hostname
+Icon Namw
+Chassis
+Machine and Boot IDs
+Virtualization
+Operating system Name
+CPE OS Name
+Kernel
+Architecture
+Firmware
+Instakked packages apt, yum,zypper,snap, and pip
+iptables
+netstat (if tools installed) Note this does not record current IP but is an easy add
+selinux OR Apparmor
+User and group list
+Java check
+Password policies
+Runing services
+
 I wanted to create a scrpt that dowa not rely on python c+ and used common linux commands.
 
 However there are differeances between versions
