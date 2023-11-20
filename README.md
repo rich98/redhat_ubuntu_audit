@@ -1,6 +1,6 @@
 # redhat_ubuntu_audit
-# needs to be run as sudo in older linux versions you have to be root (su) if the user is not in the sudo group
-# For detailes info see data natrix.pdf
+# needs to be run as sudo in older Linux versions you have to be root (su) if the user is not in the sudo group
+# For details info see data natrix.pdf
 
 What is being audited?
 Static Hostname
@@ -21,32 +21,39 @@ selinux OR Apparmor
 User and group list
 Java check
 Password policies
-Runing services
+Running services
 
-I wanted to create a scrpt that dowa not rely on python c+ and used common linux commands.
+I wanted to create a scrpt that did not rely on Python c+ and used common Linux commands.
 
-However there are differeances between versions
-
-In the ausitscript3.5.9 I usaed an if statement to determmine the linux version
+However, there are differences between versions
 
 In the ausitscript3.5.9 I used an if statement to determine the Linux version
-apt = Debian based os
+
+In the ausitscript3.5.9 I used an if statement to determine the Linux version
+apt = Debian-based os
 yum = red hat
 zipper = SUSE
-During the testing I found some packages where installed under pip and snap, a "if" staement has been added to check for packages 
+During the testing, I found some packages were installed under pip and snap, a "if" statement has been added to check for packages 
 
 Tested configs
-I can’t test every single version of linux, but I have written some legacy scripts for red hat enterprise 4,5, and 6. These should work on all versions of red hat and possible a few others these are basic.
+I can’t test every single version of Linux, but I have written some legacy scripts for Red Hat Enterprise 4,5, and 6. These should work on all versions of Red Hat and possibly a few others that are basic.
 
-Note that netstat is not installed by default on most ubuntu systems. The command will fail but its a soft fail.
-There is a slight fork for Centos 7 this file will disappear over time and will be incorporated in the main project.
+Note that Netstat is not installed by default on most Ubuntu systems. The command will fail but it's a soft fail.
+There is a slight fork for Centos 7 this file will disappear over time and will be incorporated into the main project.
 Please see the data matrix.pdf for more info.
 
-The CVE.sh is for ubuntu LTS 20 and above and will be update around twice a year (ish)
-This tests the environment for CVE vulnerabilities likeley this will spin off in to another repo 
-By the way the for Centos\Rocky yum updateinfo list security --installed command is missing, paid service in enterprise versions. TYhis will in time will get branched off properly and be maintained as its own project
+The CVE.sh is for Ubuntu LTS 20 and above and will be updated around twice a year (ish)
+This tests the environment for CVE vulnerabilities likely this will spin off into another repo 
+By the way the Centos\Rocky yum updateinfo list security --installed command is missing, paid service in enterprise versions. TYhis will in time get branched off properly and be maintained as its own project
 
-Over the next weeksa months I will start to add error checking just to tidy things up.
+Over the next weeks and months, I will start to add error checking just to tidy things up.
+
+Need a feature? Why not ask for it?
+What other versions of the Linux test? Happy to just point me at the ISO
+Feel free to contribute.
+
+Would you like to see the process info?
+Everything is shared under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 
 Need a feature? Why not ask for it!
 What other versions of linux test? Hazppy to just point me at the ISO
