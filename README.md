@@ -1,6 +1,9 @@
 # Read me notes
-redhat_ubuntu_audit
-needs to be run as sudo in older Linux versions you have to be root (su) if the user is not in the sudo group
+# Current version auditscript 3.5.9.sh
+# next planned release auditscript 3.6.0
+
+Notes
+Needs to be run as sudo in older Linux versions you have to be root (su) if the user is not in the sudo group
 For details info see data natrix.pdf
 
 What is being audited?
@@ -59,6 +62,13 @@ Everything is shared under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 200
 Need a feature? Why not ask for it!
 What other versions of linux test? Hazppy to just point me at the ISO
 Feel free to conbtribute.
+
+Auditscript 3.6.0 coming soon
+ - last logged on history
+ - Scheck running as sudo
+ - and more....
+
+
 
 Would you like to see process info?
 Everything is shared under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
