@@ -1,15 +1,11 @@
 #!/bin/bash
-# Writen bty Richard Wadsworth ThalesUK
+# Writen bty Richard Wadsworth (Public)
 # Audit script for Linux Unbuntu 14 or above and redhat 6.x and above
 # Output file
 # set name of file
 comp=`hostname`
 today=`date +%d-%m-%Y`
 output_file="$comp-system_audit-$today.txt"
-# Notice
-echo "### Security classification notice ###" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" > $output_file
 echo -e "\n" >> $output_file
 # Record the date and time of the audit
 date >> $output_file
@@ -103,7 +99,7 @@ if [ -n "$(command -v yum)" ]; then
   echo "### Listening Processes netstat (Red Hat) ###" >> $output_file
   netstat -tulnp >> $output_file
   echo -e "\n" >> $output_file
-  # log6j lookup
+  # log4j lookup
   echo "checking for log4j vulnerability..."  >> $output_file
   echo Doing a file check using find, search papamaeter is log4j* >> $output_file
   echo for more ionfomation please see Red Hat web site access.redhat.com/security/vulnerabilities/RHSB-2021-009 >> $output_file
@@ -126,7 +122,7 @@ if [ -n "$(command -v zypper)" ]; then
   # repos check for SUSE
   zypper repos >> $output_file
   echo -e "\n" >> $output_file
-  # log6j lookup
+  # log4j lookup
   echo "checking for log4j vulnerability..."  >> $output_file
   echo Doing a file check using find, search papamaeter is log4j* >> $output_file
   echo for more ionfomation please see SUSE web site www.suse.com/c/suse-statement-on-log4j-log4shell-cve-2021-44228-vulnerability/ >> $output_file
@@ -139,14 +135,6 @@ fi
 echo java check >> $output_file
 java --version >> $output_file
 echo If java returns no value and you belive java is installed check snap output. OpenJDK installed under snap does not respond to this command >> $output_file
-echo -e "\n" >> $output_file
-
-
-# Notice
-echo "### Security classification notice ###" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" 
-echo "The data collected maybe classified. Data being transfered to ONET must not exceed HMG OFFICIAL SENSITIVE" >> $output_file
-echo "### Security classification notice ###" 
 echo -e "\n" >> $output_file
 
 # Users and groups
