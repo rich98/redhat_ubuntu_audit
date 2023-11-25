@@ -43,7 +43,7 @@ if [ -n "$(command -v apt)" ]; then
   echo -e "\n" >> $output_file
   echo "if output is blank net-tools might not be installed" >> $output_file
   echo -e "\n" >> $output_file
-  # log6j lookup
+  # log4j lookup
   echo "checking for log4j vulnerability..."  >> $output_file
   echo Checking dpkg for log4j* >> $output_file
   dpkg -l | grep log4j* >> $output_file
