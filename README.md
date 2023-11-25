@@ -18,7 +18,7 @@ Oracle Linux 9,8
 Raspberry Pi (Debian bullseye)
 Open SUSE tumbleweed
 
-For Rocky 8, 9 abd centos use the auditscript3.6.0RH(core).sh comiong soon
+For Rocky 8, 9 abd centos use the auditscript3.6.0RH(core).sh comiong soon These editions to be roilled into a combined auditscript3.7.0
 
 Fixes
 fix an error with find when looking for log4j - find / -xdsev -type f -name log4j* | grep log4j* >> $output_file
