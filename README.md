@@ -48,10 +48,6 @@ Note that Netstat is not installed by default on most Ubuntu systems. The comman
 There is a slight fork for Centos 7 this file will disappear over time and will be incorporated into the main project.
 Please see the data matrix.pdf for more info.
 
-The CVE.sh is for Ubuntu LTS 20 and above and will be updated around twice a year (ish)
-This tests the environment for CVE vulnerabilities likely this will spin off into another repo 
-By the way the Centos\Rocky yum updateinfo list security --installed command is missing, paid service in enterprise versions. TYhis will in time get branched off properly and be maintained as its own project
-
 Over the next weeks and months, I will start to add error checking just to tidy things up.
 
 Need a feature? Why not ask for it?
