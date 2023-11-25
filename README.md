@@ -1,5 +1,10 @@
 # auditscript3.6.0(public).sh
 
+OS notws. For some tools to work on debian based systems such as ubuntu and raspbian PI make sure net-tools and dns utils are installed
+
+sudo apt(-get) install net-tools
+sudo apt(-get) install dnsutils
+
 Fixes
 fix an error with find when looking for log4j - find / -type f -name log4j* | grep log4j* >> $output_file
 
