@@ -1,6 +1,8 @@
 # Read me notes
-# Current version auditscript 3.5.9.sh
+# Current version auditscript 3.5.9.1sh
 # next planned release auditscript 3.6.0
+# bug fix for finding log4j
+
 
 Notes
 Needs to be run as sudo in older Linux versions you have to be root (su) if the user is not in the sudo group
