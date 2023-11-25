@@ -191,6 +191,7 @@ echo "****** Networking tests ******" >> $output_file
   echo -e "\n" >> $output_file
   else
   ip addr >> $output_file
+  echo -e "\n" >> $output_file
   
  fi
 
