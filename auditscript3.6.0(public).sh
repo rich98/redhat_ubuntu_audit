@@ -197,8 +197,9 @@ echo "****** Networking tests ******" >> $output_file
 
 #public IP information 
  if [ -n "$(command -v dig)" ]; then
-  echo "****** Public Ip address lookup test  ******" >> $output_file
+  echo "****** Public Ip address & NS lookup test  ******" >> $output_file
   dig +short myip.opendns.com @resolver1.opendns.com >> $output_file
+  dig >> $output_file
   echo -e "\n" >> $output_file
   
  fi
