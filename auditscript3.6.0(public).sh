@@ -2,6 +2,7 @@
 # Writen bty Richard Wadsworth 
 # Audit script for Linux Unbuntu 18 or above and redhat 7.x and above
 # Check if the script is run as root
+# Run as root
 if [ "$EUID" -ne 0 ]; then
   echo "Please run as root."
   exit 
@@ -43,11 +44,12 @@ echo User has selected classification:$clss >$output_file
 # Basic system information
 echo "****** Basic System Information using hostnamectl ******">> $output_file
 # Record the date and time of the audit> $output_file
-echo dataclassification has been set to $hmg
 hostnamectl >> $output_file
+echo -e "\n" >> $output_file
 echo "****** Script version ******" >> $output_file
 echo $scriptn >> $output_file
 echo -e "\n" >> $output_file
+
 # List of installed packages (Ubuntu)
 if [ -n "$(command -v apt)" ]; then
   echo "****** Installed Packages apt list Ubuntu ******" >> $output_file
@@ -66,12 +68,13 @@ if [ -n "$(command -v apt)" ]; then
   dpkg -l | grep log4j* >> $output_file
   echo -e "\n" >> $output_file
   echo Now doing a file check using find, search papamaeter is log4j* >> $output_file
-  find / -type f -name log4j* | grep log4j* >> $output_file 2> /dev/null
+  find / -xdev -type f -name log4j* | grep log4j* >> $output_file 2> /dev/null
   echo -e "\n" >> $output_file
   echo Note for Ubuntu Pro editions use the log4J ua script. Ubuntu '20' LTS and above Requires internet connection for updates >> $output_file
 
 fi
 
+#Check pacjkage managers
 echo "****** Checking package managers ******" >> $output_file
 echo -e "\n" >> $output_file
 # Check Snap
@@ -95,6 +98,9 @@ if [ -n "$(command -v yum)" ]; then
   echo "****** yum Red Hat based OS ******" >> $output_file
   yum list installed >> $output_file
   echo -e "\n" >> $output_file
+  echo "****** rpm Red Hat based OS ******" >> $output_file
+  rpm -qa >> $output_file
+  echo -e "\n" >> $output_file
 # set source for selinux
   source /etc/sysconfig/selinux
   echo checking SELINUX /etc/sysconfig/selinux  >> $output_file
@@ -113,7 +119,7 @@ if [ -n "$(command -v yum)" ]; then
   echo "checking for log4j vulnerability..."  >> $output_file
   echo Doing a file check using find, search papamaeter is log4j* >> $output_file
   echo for more ionfomation please see Red Hat web site access.redhat.com/security/vulnerabilities/RHSB-2021-009 >> $output_file
-  find / -type f -name log4j* | grep log4j* >> $output_file
+  find / -xdev -type f -name log4j* | grep log4j*  >> $output_file
   echo -e "\n" >> $output_file
  
 fi
@@ -137,7 +143,7 @@ if [ -n "$(command -v zypper)" ]; then
   echo "checking for log4j vulnerability..."  >> $output_file
   echo Doing a file check using find, search papamaeter is log4j* >> $output_file
   echo for more ionfomation please see SUSE web site www.suse.com/c/suse-statement-on-log4j-log4shell-cve-2021-44228-vulnerability/ >> $output_file
-  find / -type f -name log4j* | grep log4j* >> $output_file
+  find / -xdev -type f -name log4j* | grep log4j* >> $output_file
   echo -e "\n" >> $output_file
   echo User has selected classification:$clss >> $output_file
 
