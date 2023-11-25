@@ -62,7 +62,7 @@ Would you like to see the process info?
 Everything is shared under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
 
 Need a feature? Why not ask for it!
-What other versions of linux test? Hazppy to just point me at the ISO
+What other versions of linux test? Happy to just point me at the ISO
 Feel free to conbtribute.
 
 Auditscript 3.6.0 coming soon
