@@ -78,6 +78,12 @@ if [ -n "$(command -v yum)" ]; then
   echo "### Listening Processes netstat (Red Hat) ###" >> $output_file
   netstat -tulnp >> $output_file
   echo -e "\n" >> $output_file
+    # log4j lookup
+  echo "checking for log4j vulnerability..."  >> $output_file
+  echo Doing a file check using find, search papamaeter is log4j* >> $output_file
+  echo for more ionfomation please see Red Hat web site access.redhat.com/security/vulnerabilities/RHSB-2021-009 >> $output_file
+  find / -type f -name log4j* | grep log4j* >> $output_file
+  echo -e "\n" >> $output_file
  
 fi
 # List of installed packages (SUSE)
