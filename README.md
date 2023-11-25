@@ -11,6 +11,10 @@ Makesure lshw is installed for Open SUSE
 sudo zypper refresh
 sudo zypper install -y lshw
 
+fedora 39 (and maybe others) make sure lshw is installed 
+lshw-B.02.19.2-12.fc39.x86_64	Hardware lister
+
+
 Tested on 
 Red hat 9,8,7 
 Ubuntu 16LTS, 18LTS, 22LTS, MINT CSI Linux 2023.2, and kali 2023
