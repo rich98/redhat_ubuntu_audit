@@ -1,5 +1,7 @@
 # auditscript3.6.0(public).sh
 
+#System Requirements
+
 OS notes. For some tools to work on debian based systems such as ubuntu and raspbian PI make sure net-tools and dns utils are installed
 
 sudo apt(-get) install net-tools
@@ -8,6 +10,15 @@ sudo apt(-get) install dnsutils
 Makesure lshw is installed for Open SUSE
 sudo zypper refresh
 sudo zypper install -y lshw
+
+Tested on 
+Red hat 9,8,7 
+Ubuntu 16LTS, 18LTS, 22LTS, MINT CSI Linux 2023.2, and kali 2023
+Oracle Linux 9,8
+Raspberry Pi (Debian bullseye)
+Open SUSE tumbleweed
+
+For Rocky 8, 9 abd centos use the auditscript3.6.0RH(core).sh comiong soon
 
 Fixes
 fix an error with find when looking for log4j - find / -xdsev -type f -name log4j* | grep log4j* >> $output_file
@@ -50,11 +61,5 @@ List installed software check forpackage managers
   USB information
   General Hardware information 
 
-  Tested on 
-  Red hat 9,8,7
-  Ubuntu 16LTS, 18LTS, 22LTS, MINT CSI Linux 2023.2, and kali 2023
-  Oracle Linux 9,8
-  Raspberry Pi (Debian bullseye)
-  Open SUSE tumbleweed
 
   If you want me to test on any other version please let me know by creating an issue.
