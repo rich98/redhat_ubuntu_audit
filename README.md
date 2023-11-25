@@ -1,7 +1,7 @@
 # Read me notes
 # Current version auditscript 3.5.9.1sh
 # next planned release auditscript 3.6.0
-# Vug fix for finding log4j
+# bug fix for finding log4j
 
 
 Notes
