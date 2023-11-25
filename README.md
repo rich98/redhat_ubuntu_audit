@@ -44,7 +44,6 @@ List installed software check forpackage managers
   Tested on 
   Red hat 9,8,7
   Ubuntu 16LTS, 18LTS, 22LTS, MINT CSI Linux 2023.2, and kali 2023
-  Rocky 8, 9
   Oracle Linux 9,8
   Raspberry Pi (Debian bullseye)
   Open SUSE tumbleweed
