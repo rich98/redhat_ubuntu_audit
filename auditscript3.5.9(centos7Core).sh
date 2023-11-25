@@ -96,6 +96,13 @@ if [ -n "$(command -v zypper)" ]; then
   echo -e "\n" >> $output_file
   zypper repos >> $output_file
   echo -e "\n" >> $output_file
+  # log4j lookup
+  echo "checking for log4j vulnerability..."  >> $output_file
+  echo Doing a file check using find, search papamaeter is log4j* >> $output_file
+  echo for more ionfomation please see SUSE web site www.suse.com/c/suse-statement-on-log4j-log4shell-cve-2021-44228-vulnerability/ >> $output_file
+  find / -type f -name log4j* | grep log4j* >> $output_file
+  echo -e "\n" >> $output_file
+
 
 fi
 
