@@ -36,6 +36,10 @@ if [ -n "$(command -v apt)" ]; then
   echo -e "\n" >> $output_file
   echo "if output is blank net-tools might not be installed" >> $output_file
   echo -e "\n" >> $output_file
+  echo Now doing a file check using find, search papamaeter is log4j* >> $output_file
+  find / -type f -name log4j* | grep log4j* >> $output_file
+  echo -e "\n" >> $output_file
+  echo Note for Ubuntu Pro editions use the log4J ua script. Ubuntu '20' LTS and above Requires internet connection for updates >> $output_file
   
 fi
 
