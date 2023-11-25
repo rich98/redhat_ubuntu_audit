@@ -1,6 +1,6 @@
 # auditscript3.6.0(public).sh
 
-OS notws. For some tools to work on debian based systems such as ubuntu and raspbian PI make sure net-tools and dns utils are installed
+OS notes. For some tools to work on debian based systems such as ubuntu and raspbian PI make sure net-tools and dns utils are installed
 
 sudo apt(-get) install net-tools
 sudo apt(-get) install dnsutils
