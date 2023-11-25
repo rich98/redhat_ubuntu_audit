@@ -6,7 +6,7 @@ sudo apt(-get) install net-tools
 sudo apt(-get) install dnsutils
 
 Fixes
-fix an error with find when looking for log4j - find / -type f -name log4j* | grep log4j* >> $output_file
+fix an error with find when looking for log4j - find / -xdsev -type f -name log4j* | grep log4j* >> $output_file
 
 Changes & improvements
 1. At the start of the script the user is asked for a helpdesk\jira\request ticket number - This can be left blank. If entered the number is refixed to the outputfile name.
