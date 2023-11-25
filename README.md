@@ -6,6 +6,8 @@ sudo apt(-get) install net-tools
 sudo apt(-get) install dnsutils
 
 Makesure lshw is installed for Open SUSE
+sudo zypper refresh
+sudo zypper install -y lshw
 
 Fixes
 fix an error with find when looking for log4j - find / -xdsev -type f -name log4j* | grep log4j* >> $output_file
