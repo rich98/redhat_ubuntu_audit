@@ -1,6 +1,7 @@
 # Read me notes
 # Current version auditscript 3.5.9.sh
 # next planned release auditscript 3.6.0
+# CIS spefic scripts announced these will be the next geration od scripts CISaudit v1 in the works and will arrive 2024
 
 Notes
 Needs to be run as sudo in older Linux versions you have to be root (su) if the user is not in the sudo group
