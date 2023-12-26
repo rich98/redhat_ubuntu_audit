@@ -1,6 +1,6 @@
 # Read me notes
-# Current version auditscript 3.5.9.sh
-# next planned release auditscript 3.6.2 completed and will be released soon.
+# Current version auditscript 3.6.2int.sh
+
 # CIS spefic scripts announced these will be the next geration od scripts CISaudit v1 in the works and will arrive 2024
 
 Notes
@@ -32,15 +32,6 @@ I wanted to create a scrpt that did not rely on Python c+ and used common Linux 
 
 However, there are differences between versions
 
-In the ausitscript3.5.9 I used an if statement to determine the Linux version
-
-In the ausitscript3.5.9 I used an if statement to determine the Linux version
-apt = Debian-based os
-yum = red hat
-zipper = SUSE
-During the testing, I found some packages were installed under pip and snap, a "if" statement has been added to check for packages 
-
-Tested configs
 I can’t test every single version of Linux, but I have written some legacy scripts for Red Hat Enterprise 4,5, and 6. These should work on all versions of Red Hat and possibly a few others that are basic.
 
 Note that Netstat is not installed by default on most Ubuntu systems. The command will fail but it's a soft fail.
@@ -64,12 +55,7 @@ Need a feature? Why not ask for it!
 What other versions of linux test? Hazppy to just point me at the ISO
 Feel free to conbtribute.
 
-Auditscript 3.6.0 coming soon
- - last logged on history
- - Scheck running as sudo
- - and more....
-
-
+Auditscript 3.6.5 coming soon
 
 Would you like to see process info?
 Everything is shared under the GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007
