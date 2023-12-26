@@ -30,26 +30,12 @@ Running services
 
 I wanted to create a scrpt that did not rely on Python c+ and used common Linux commands.
 
-However, there are differences between versions
-
-In the ausitscript3.5.9 I used an if statement to determine the Linux version
-
-In the ausitscript3.5.9 I used an if statement to determine the Linux version
-apt = Debian-based os
-yum = red hat
-zipper = SUSE
-During the testing, I found some packages were installed under pip and snap, a "if" statement has been added to check for packages 
-
 Tested configs
 I can’t test every single version of Linux, but I have written some legacy scripts for Red Hat Enterprise 4,5, and 6. These should work on all versions of Red Hat and possibly a few others that are basic.
 
 Note that Netstat is not installed by default on most Ubuntu systems. The command will fail but it's a soft fail.
 There is a slight fork for Centos 7 this file will disappear over time and will be incorporated into the main project.
 Please see the data matrix.pdf for more info.
-
-The CVE.sh is for Ubuntu LTS 20 and above and will be updated around twice a year (ish)
-This tests the environment for CVE vulnerabilities likely this will spin off into another repo 
-By the way the Centos\Rocky yum updateinfo list security --installed command is missing, paid service in enterprise versions. TYhis will in time get branched off properly and be maintained as its own project
 
 Over the next weeks and months, I will start to add error checking just to tidy things up.
 
