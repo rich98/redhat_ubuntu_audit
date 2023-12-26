@@ -1,5 +1,5 @@
 # Read me notes
-# Current version auditscript 3.6.2int.sh
+# Current version auditscript 3.6.2int.sh go to that branch
 
 # CIS spefic scripts announced these will be the next geration od scripts CISaudit v1 in the works and will arrive 2024
 
