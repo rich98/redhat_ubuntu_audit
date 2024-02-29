@@ -9,7 +9,7 @@ fi
 
 # Set vars
 clear
-read -p "Please enter a audit ref:" bmn
+read -p "Please enter a audit ref:" AUD
 clear
 echo "Set Data classification Valid entries:OPEN, LIMITED, CONFIDENTIAL, SECRET"
 read -p "Please set the classification of Data?" govclass
