@@ -160,8 +160,8 @@ fi
 if [ -n "$(command -v java)" ]; then
   echo "****** java test results******" >> $output_file
   java --version >> $output_file
+  echo -e "\n" >> $output_file
 fi
-echo -e "\n" >> $output_file
 
 # Users and groups
 echo "****** Users and Groups cat etc/passwd & group ******" >> $output_file
