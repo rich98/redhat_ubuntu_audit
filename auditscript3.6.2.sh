@@ -47,6 +47,9 @@ else
 
 fi
 
+# Redirect all output to the file
+exec >> $outpath$output_file
+
 comp=`hostname`
 today=`date +%d-%m-%Y`
 output_file="BMN$bmn-$comp-system_audit-$today-$govclass.txt"
