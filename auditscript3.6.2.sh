@@ -30,16 +30,16 @@ elif [ $govclass == "OCCAR-R" ]; then
         clss="OCCAR-RESCRICTED"
 
 elif [ $govclass == "C1" ]; then
-        clss="C1:OPEN- DESIGNED TO BE SHARED PUBLICLY"
+        clss="C1:OPEN DESIGNED TO BE SHARED PUBLICLY"
       
 elif [ $govclass == "C2" ]; then
-        clss="C2:THALES GROUP LIMITED DISTRIBUTION"  
+        clss="C2:GROUP LIMITED DISTRIBUTION"  
         
 elif [ $govclass == "C3" ]; then
-        clss="C3:THALES GROUP CONFIDENTIAL- SENSITIVE INFORMATION" 
+        clss="C3:GROUP CONFIDENTIAL- SENSITIVE INFORMATION" 
 
 elif [ $govclass == "C4" ]; then
-        clss="C4:THALES GROUP SECRET- EXTREMELY SENSITIVE INFORMATION" 
+        clss="C4:GROUP SECRET- EXTREMELY SENSITIVE INFORMATION" 
 
 else
         echo "Not a valid answer Good byer."
