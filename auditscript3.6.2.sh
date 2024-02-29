@@ -1,5 +1,5 @@
 #!/bin/bash
-# Writen bty Richard Wadsworth ThalesUK
+# Writen by Richard Wadsworth 
 # Audit script for Linux Unbuntu 18 or above and redhat 7.x and above
 # Check if the script is run as root
 if [ "$EUID" -ne 0 ]; then
