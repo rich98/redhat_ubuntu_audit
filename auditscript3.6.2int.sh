@@ -157,6 +157,13 @@ if [ -n "$(command -v zypper)" ]; then
 
 fi
 
+if [ -n "$(command -v java)" ]; then
+   echo "***** checking for java *****" >> $output_file
+  java --version >> $output_file
+  echo -e "\n" >> $output_file
+  
+fi
+
 # Users and groups
 echo "****** Users and Groups cat etc/passwd & group ******" >> $output_file
 cat /etc/passwd >> $output_file
