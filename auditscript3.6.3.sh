@@ -53,7 +53,7 @@ exec >> $outpath$output_file
 comp=`hostname`
 today=`date +%d-%m-%Y`
 output_file="BMN$bmn-$comp-system_audit-$today-$govclass.txt"
-scriptn="Linux auditscript 2.6.3"
+scriptn="Linux auditscript 3.6.3"
 
 # Notice
 echo "****** Security classification notice ******" 
