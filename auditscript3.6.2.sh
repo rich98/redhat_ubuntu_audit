@@ -170,7 +170,7 @@ if [ -n "$(command -v zypper)" ]; then
   find / -xdev -type f -name log4j* | grep log4j* >> $output_file
   echo -e "\n" >> $output_file
   echo "***** checking for java *****" >> $output_file
-  java --version >> $output_file
+  java --version >> $output_file 2>&1
   echo -e "\n" >> $output_file
 
 fi
