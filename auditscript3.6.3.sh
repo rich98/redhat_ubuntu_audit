@@ -9,46 +9,45 @@ fi
 
 # Set vars
 clear
-read -p "Please enter the BMN number as a numerical number only e.g. 1234:" bmn
-clear
-echo "Set Data classification Valid entries:O, OS, S, SUKEO, OCCAR-R, C1, C2, C3, C4"
-read -p "Please set the classification of Data?" govclass
+while true; do
+    read -p "Please enter the BMN number as a numerical number only e.g. 1234:" bmn
+    clear
+    echo "Set Data classification Valid entries:O, OS, S, SUKEO, OCCAR-R, C1, C2, C3, C4"
+    read -p "Please set the classification of Data?" govclass
 
-if [ $govclass == "O" ]; then
-        clss="OFFICIAL"
-
-elif [ $govclass == "OS" ]; then
+    if [ $govclass == "O" ]; then
+        clss="OFFICIAL" 
+        break
+    elif [ $govclass == "OS" ]; then
         clss="OFFICIAL SENSITIVE"
-        
-elif [ $govclass == "S" ]; then
+        break
+    elif [ $govclass == "S" ]; then
         clss="SECRET"
-        
-elif [ $govclass == "SUKEO" ]; then
+        break
+    elif [ $govclass == "SUKEO" ]; then
         clss="SUKEO"
-        
-elif [ $govclass == "OCCAR-R" ]; then
+        break
+    elif [ $govclass == "OCCAR-R" ]; then
         clss="OCCAR-RESCRICTED"
-
-elif [ $govclass == "C1" ]; then
+        break
+    elif [ $govclass == "C1" ]; then
         clss="C1:OPEN DESIGNED TO BE SHARED PUBLICLY"
-      
-elif [ $govclass == "C2" ]; then
+        break
+    elif [ $govclass == "C2" ]; then
         clss="C2:GROUP LIMITED DISTRIBUTION"  
-        
-elif [ $govclass == "C3" ]; then
+        break
+    elif [ $govclass == "C3" ]; then
         clss="C3:GROUP CONFIDENTIAL- SENSITIVE INFORMATION" 
-
-elif [ $govclass == "C4" ]; then
+        break
+    elif [ $govclass == "C4" ]; then
         clss="C4:GROUP SECRET- EXTREMELY SENSITIVE INFORMATION" 
-
-else
-        echo "Not a valid answer Good byer."
-        exit 1
-
-fi
-
-# Redirect all output to the file
-exec >> $outpath$output_file
+        break
+    else
+        echo "Not a valid answer. Please try again."
+        sleep 2
+        clear
+    fi
+done
 
 comp=`hostname`
 today=`date +%d-%m-%Y`
@@ -61,10 +60,8 @@ echo User has selected classification:$clss
 echo User has selected classification:$clss >$output_file
 
 # Basic system information
-echo "********************************************************">>
 echo "****** Basic System Information using hostnamectl ******">> $output_file
-echo "********************************************************">>
-# Record the date and time of the audite
+# Record the date and time of the audit> $output_file
 date >> $output_file
 hostnamectl >> $output_file
 echo "****** Script version ******" >> $output_file
@@ -73,28 +70,18 @@ echo -e "\n" >> $output_file
 
 # List of installed packages (Ubuntu)
 if [ -n "$(command -v apt)" ]; then
-  echo "************************************************" >> $output_file
   echo "****** Installed Packages apt list Ubuntu ******" >> $output_file
-  echo "************************************************" >> $output_file
-  apt list --installed >> $output_file
+  apt list --installed 2>/dev/null >> $output_file
   >> $output_file
   echo -e "\n" >> $output_file
   # Check apparmor
-  echo "*******************************" >> $output_file
   echo "****** Checking Apparmor ******" >> $output_file
-  echo "*******************************" >> $output_file
   apparmor_status >> $output_file
-  echo "**************************************************" >> $output_file
   echo "******  Repositories using apy-cache policy ******" >> $output_file
-  echo "**************************************************" >> $output_file
   # cat /etc/apt/sources.list >> $output_file
-  apt-cache policy >> $output_file
+  apt-cache policy  >> $output_file
   echo -e "\n" >> $output_file
-
-  echo "**************************************************" >> $output_file
-  echo "***** checking for log4j vulnerability..."   *****" >> $output_file
-  echo "**************************************************" >> $output_file
-  
+  echo "checking for log4j vulnerability..."  >> $output_file
   echo Checking dpkg for log4j* >> $output_file
   dpkg -l | grep log4j* >> $output_file
   echo -e "\n" >> $output_file
@@ -104,32 +91,25 @@ if [ -n "$(command -v apt)" ]; then
   echo now checking for dependencies >> $output_file
   apt depends *log4j* >> $output_file
   echo "Note for Ubuntu Pro editions use the log4J ua script. Ubuntu '20' LTS and above Requires internet connection for updates" >> $output_file	 
- 
-  echo "****************************" >> $output_file
-  echo "****** JAVA DPKG CHECK *****" >> $output_file
-  echo "****************************" >> $output_file
-  
   dpkg -l | grep *jdk* >> $output_file
   dpkg -l | grep *jre* >> $output_file
   dpkg -l | grep *java* >> $output_file
   dpkg -l | grep *sdk* >> $output_file
   echo -e "\n" >> $output_file
 fi
-  echo "****************************" >> $output_file
-  echo "****** SNAP      CHECK *****" >> $output_file
-  echo "****************************" >> $output_file
+# Check Snap
 if [ -n "$(command -v snap)" ]; then
   echo "****** Installed Packages listed under snap snap ******" >> $output_file
   snap list >> $output_file
   echo -e "\n" >> $output_file
+  
 fi
-  echo "****************************" >> $output_file
-  echo "****** PIP       CHECK *****" >> $output_file
-  echo "****************************" >> $output_file
+# Check PIP
 if [ -n "$(command -v pip)" ]; then
   echo "****** Installed Packages listed under PIP python ******" >> $output_file
   pip list >> $output_file
   echo -e "\n" >> $output_file
+  
 fi
 # List of installed packages (Red Hat)
 if [ -n "$(command -v yum)" ]; then
@@ -195,18 +175,24 @@ if [ -n "$(command -v zypper)" ]; then
 fi
 
 if [ -n "$(command -v java)" ]; then
-  echo "*************************^***" >> $output_file
-  echo "****** Final java CHECK *****" >> $output_file
-  echo "*****************************" >> $output_file
+  echo "****** java test results******" >> $output_file
   java --version >> $output_file
   echo -e "\n" >> $output_file
 fi
 
+#root search for JDK\JRE
+echo running JRE-JDK file search this may take a while...
+echo root dearch for JDK and JRE >> $output_file
+find / -xdev -name "*jdk*" >> $output_file 
+find / -xdev -name "*jre*" >> $output_file 
+find / -xdev -name "*JDK*" >> $output_file 
+find / -xdev -name "*JRE*" >> $output_file 
+find / -xdev -name "*oracle*" >> $output_file 
+echo -e "\n" >> $output_file
+echo -e "\n" >> $output_file
 
 # Users and groups
-echo "********************************************************" >> $output_file
-echo "****** Users and Groups History, groups, password ******" >> $output_file
-echo "************************************************(((*****" >> $output_file
+echo "****** Users and Groups cat etc/passwd & group ******" >> $output_file
 cat /etc/passwd >> $output_file
 echo -e "\n" >> $output_file
 cat /etc/group >> $output_file
@@ -271,9 +257,7 @@ echo -e "\n" >> $output_file
 
 # Check netstat
 if [ -n "$(command -v netstat)" ]; then
-  echo "****************************************^***" >> $output_file
   echo "****** List open ports using netstat  ******" >> $output_file
-  echo "****************************************^***" >> $output_file
   netstat -tuln >> $output_file
   echo -e "\n" >> $output_file
   echo "****** Listening Processes netstat ******" >> $output_file
@@ -284,9 +268,7 @@ if [ -n "$(command -v netstat)" ]; then
 fi
 
 # Running services
-echo "************************************^***" >> $output_file
 echo "****** Running Services systemctl ******" >> $output_file
-echo "************************************^***" >> $output_file
 systemctl list-units --type=service >> $output_file
 echo -e "\n" >> $output_file
 
@@ -296,25 +278,17 @@ echo -e "\n" >> $output_file
 ps aux >> $output_file
 echo -e "\n" >> $output_file
 
-echo "***********************^***" >> $output_file
-echo "******Disk      CHECK *****" >> $output_file
-echo "***************************" >> $output_file
+#Check Disk usage
 echo Disk Stats >> $output_file
 lsblk >> $output_file
 echo -e "\n" >> $output_file
 
-echo "***********************^***" >> $output_file
-echo "******USB       CHECK *****" >> $output_file
-echo "***************************" >> $output_file
 # show usb List
 echo USB state >> $output_file
 lsusb --tree >> $output_file
 echo -e "\n" >> $output_file
 
 # Listing hardware
-  echo "***********************^***" >> $output_file
-  echo "****** Hardware CHECK *****" >> $output_file
-  echo "***************************" >> $output_file
 lshw >> $output_file
 echo -e "\n" >> $output_file
 echo User has selected classification:$clss >> $output_file
