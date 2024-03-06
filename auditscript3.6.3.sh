@@ -15,31 +15,31 @@ while true; do
     echo "Set Data classification Valid entries:O, OS, S, SUKEO, OCCAR-R, C1, C2, C3, C4"
     read -p "Please set the classification of Data?" govclass
 
-    if [ $govclass == "O" ]; then
+    if [ $(echo $govclass | tr '[:upper:]' '[:lower:]') == "o" ]; then
         clss="OFFICIAL" 
         break
-    elif [ $govclass == "OS" ]; then
+    elif [ $(echo $govclass | tr '[:upper:]' '[:lower:]') == "os" ]; then
         clss="OFFICIAL SENSITIVE"
         break
-    elif [ $govclass == "S" ]; then
+    elif [ $(echo $govclass | tr '[:upper:]' '[:lower:]') == "s" ]; then
         clss="SECRET"
         break
-    elif [ $govclass == "SUKEO" ]; then
+    elif [ $(echo $govclass | tr '[:upper:]' '[:lower:]') == "sukeo" ]; then
         clss="SUKEO"
         break
-    elif [ $govclass == "OCCAR-R" ]; then
+    elif [ $(echo $govclass | tr '[:upper:]' '[:lower:]') == "occar-r" ]; then
         clss="OCCAR-RESCRICTED"
         break
-    elif [ $govclass == "C1" ]; then
+    elif [ $(echo $govclass | tr '[:upper:]' '[:lower:]') == "c1" ]; then
         clss="C1:OPEN DESIGNED TO BE SHARED PUBLICLY"
         break
-    elif [ $govclass == "C2" ]; then
+    elif [ $(echo $govclass | tr '[:upper:]' '[:lower:]') == "c2" ]; then
         clss="C2:GROUP LIMITED DISTRIBUTION"  
         break
-    elif [ $govclass == "C3" ]; then
+    elif [ $(echo $govclass | tr '[:upper:]' '[:lower:]') == "c3" ]; then
         clss="C3:GROUP CONFIDENTIAL- SENSITIVE INFORMATION" 
         break
-    elif [ $govclass == "C4" ]; then
+    elif [ $(echo $govclass | tr '[:upper:]' '[:lower:]') == "c4" ]; then
         clss="C4:GROUP SECRET- EXTREMELY SENSITIVE INFORMATION" 
         break
     else
