@@ -59,6 +59,8 @@ echo "****** Security classification notice ******"
 echo User has selected classification:$clss
 echo User has selected classification:$clss >$output_file
 
+echo "Script message ***** checking system *****"
+
 # Basic system information
 echo "****** Basic System Information using hostnamectl ******">> $output_file
 # Record the date and time of the audit> $output_file
@@ -67,6 +69,8 @@ hostnamectl >> $output_file
 echo "****** Script version ******" >> $output_file
 echo $scriptn >> $output_file
 echo -e "\n" >> $output_file
+
+echo "Script message ***** checking installed packages *****"
 
 # List of installed packages (Ubuntu)
 if [ -n "$(command -v apt)" ]; then
@@ -129,7 +133,7 @@ if [ -n "$(command -v yum)" ]; then
   yum repolist >> $output_file
   echo -e "\n" >> $output_file
   echo "******  check for security updates red hat Note this command fails in CENTOS ******" >> $output_file
-  echo "CENTOS users consider migrating to Rocky Lunx https://rockylinux.org/"
+  #echo "CENTOS users consider migrating to Rocky Lunx https://rockylinux.org/"
   yum updateinfo list security --installed >> $output_file
   echo -e "\n" >> $output_file
   echo "checking for log4j vulnerability..."  >> $output_file
@@ -173,6 +177,7 @@ if [ -n "$(command -v zypper)" ]; then
   echo -e "\n" >> $output_file
 
 fi
+echo "Script message ***** Running java check 1 *****"
 
 if [ -n "$(command -v java)" ]; then
   echo "****** java test results******" >> $output_file
@@ -180,16 +185,39 @@ if [ -n "$(command -v java)" ]; then
   echo -e "\n" >> $output_file
 fi
 
-#root search for JDK\JRE
-echo running JRE-JDK file search this may take a while...
-echo root dearch for JDK and JRE >> $output_file
-find / -xdev -name "*jdk*" >> $output_file 
-find / -xdev -name "*jre*" >> $output_file 
-find / -xdev -name "*JDK*" >> $output_file 
-find / -xdev -name "*JRE*" >> $output_file 
-find / -xdev -name "*oracle*" >> $output_file 
+# root search for JDK\JRE
+echo "Script message ***** Running java file search this may take a while..."
+echo "java file search" >> $output_file
+# exculde png svg tag javascript pom html files that contain "java""
+find / -xdev -name "java*" ! \( -name "*.png" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
+find / -xdev -name "*oracle*" ! \( -name "*.png" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
+# echo -e "\n" >> $output_file
+# Find all java executables
+java_paths=$(find / -name 'java' -type f -print 2>/dev/null)
+
+# Loop through each path
+for java_path in $java_paths
+do
+    # Get the version information
+    version_info=$("$java_path" -version 2>&1)
+
+    # Check if it's Oracle Java
+    if echo "$version_info" | grep -q "Java(TM) SE Runtime Environment"; then
+        echo "Oracle Java found at $java_path"
+        echo "$version_info" >> $output_file
+    
+    fi
+
+    # Check if it's OpenJDK
+    if echo "$version_info" | grep -q "OpenJDK Runtime Environment"; then
+        echo "OpenJDK found at $java_path"
+        echo "$version_info" >> $output_file
+        echo -e "\n" >> $output_file
+    fi
+done
+
 echo -e "\n" >> $output_file
-echo -e "\n" >> $output_file
+echo "Script message ***** checking users & groups *****"
 
 # Users and groups
 echo "****** Users and Groups cat etc/passwd & group ******" >> $output_file
@@ -198,10 +226,13 @@ echo -e "\n" >> $output_file
 cat /etc/group >> $output_file
 echo -e "\n" >> $output_file
 
+echo "Script message ***** log on history  *****"
+
 # Login history 
 last -F >> $output_file
 echo -e "\n" >> $output_file
 
+echo "Script message ***** password policies *****"
 
 # Password policies
 echo "****** Password Policies pwck & grpck -r ******" >> $output_file
@@ -249,6 +280,8 @@ fi
 #echo testing DNS >> $output_file
 #nslookup bbc.co.uk >> $output_file
 
+
+echo "Script message ***** checking network *****"
 # Firewall rules using ip-ables 
 echo "****** Firewall rules using ip-ables  ******" >> $output_file
 echo out put of fireall iptables >> $output_file
@@ -267,6 +300,7 @@ if [ -n "$(command -v netstat)" ]; then
    
 fi
 
+echo "Script message ***** System check 2 *****"
 # Running services
 echo "****** Running Services systemctl ******" >> $output_file
 systemctl list-units --type=service >> $output_file
@@ -291,6 +325,9 @@ echo -e "\n" >> $output_file
 # Listing hardware
 lshw >> $output_file
 echo -e "\n" >> $output_file
+
+echo "Script message ***** final processing *****"
+
 echo User has selected classification:$clss >> $output_file
 
 echo The contents of theis script must be reviewed first before transfering to ONET >> $output_file
