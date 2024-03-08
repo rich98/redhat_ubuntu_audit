@@ -189,8 +189,8 @@ fi
 echo "Script message ***** Running java file search this may take a while..."
 echo "java file search" >> $output_file
 # exculde png svg tag javascript pom html files that contain "java""
-find / -xdev -name "java*" ! \( -name "*.png" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
-find / -xdev -name "*oracle*" ! \( -name "*.png" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
+find / -xdev -name "java*" ! \( -name "*.png" -o -name "*.nasl" -o -name "*.nse" -o -name "*.py" -o -name "*.rb" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
+find / -xdev -name "*oracle*" ! \( -name "*.png" -o -name "*.nasl" -o -name "*.nse" -o -name "*.py" -o -name "*.rb" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
 # echo -e "\n" >> $output_file
 # Find all java executables
 java_paths=$(find / -name 'java' -type f -print 2>/dev/null)
@@ -203,15 +203,17 @@ do
 
     # Check if it's Oracle Java
     if echo "$version_info" | grep -q "Java(TM) SE Runtime Environment"; then
-        echo "Oracle Java found at $java_path"
+        echo "Oracle Java found at $java_path" 
+        echo "$java_path" >> $output_file
         echo "$version_info" >> $output_file
     
     fi
 
     # Check if it's OpenJDK
     if echo "$version_info" | grep -q "OpenJDK Runtime Environment"; then
-        echo "OpenJDK found at $java_path"
+        echo "OpenJDK found at $java_path"  
         echo "$version_info" >> $output_file
+        echo "$java_path" >> $output_file
         echo -e "\n" >> $output_file
     fi
 done
