@@ -189,9 +189,8 @@ fi
 echo "Script message ***** Running java file search this may take a while..."
 echo "java file search" >> $output_file
 # exculde png svg tag javascript pom html files that contain "java""
-find / -xdev -name "java*" ! \( -name "*.png" -o -name "*.nasl" -o -name "*.nse" -o -name "*.py" -o -name "*.rb" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
-find / -xdev -name "*oracle*" ! \( -name "*.png" -o -name "*.nasl" -o -name "*.nse" -o -name "*.py" -o -name "*.rb" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
-# echo -e "\n" >> $output_file
+find / -xdev -name "java*" ! \( -name "*.png" -o -name "*.ui" -o -name "*.vi" -o -name "*.swidtag" -o -name "*.jml" -o -name "*.pyc" -o -name "*.md" -o -name "*.pdf" -o -name "*.png" -o -name "*.nasl" -o -name "*.nse" -o -name "*.py" -o -name "*.rb" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
+find / -xdev -name "*oracle*" ! \( -name "*.png" -o -name "*.ui" -o -name "*.vi" -o -name "*.swidtag" -o -name "*.jml" -o -name "*.pyc" -o -name "*.md" -o -name "*.pdf" -o -name "*.png" -o -name "*.nasl" -o -name "*.nse" -o -name "*.py" -o -name "*.rb" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
 # Find all java executables
 java_paths=$(find / -name 'java' -type f -print 2>/dev/null)
 
