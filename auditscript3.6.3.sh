@@ -203,7 +203,7 @@ do
     # Check if it's Oracle Java
     if echo "$version_info" | grep -q "Java(TM) SE Runtime Environment"; then
         echo "Oracle Java found at $java_path" 
-        echo "Oracle java found at $java_path" >> $output_file
+        echo "$java_path" >> $output_file
         echo "$version_info" >> $output_file
     
     fi
