@@ -52,7 +52,7 @@ done
 comp=`hostname`
 today=`date +%d-%m-%Y`
 output_file="BMN$bmn-$comp-system_audit-$today-$govclass.txt"
-scriptn="Linux auditscript 3.6.3"
+scriptn="Linux auditscript 3.6.3.1"
 
 # Notice
 echo "****** Security classification notice ******" 
@@ -93,7 +93,7 @@ if [ -n "$(command -v apt)" ]; then
   find / -xdev -type f -name log4j* | grep log4j* >> $output_file
   echo -e "\n" >> $output_file
   echo now checking for dependencies >> $output_file
-  apt depends *log4j* >> $output_file
+  apt depends *log4j* 2>/dev/null >> $output_file
   echo "Note for Ubuntu Pro editions use the log4J ua script. Ubuntu '20' LTS and above Requires internet connection for updates" >> $output_file	 
   dpkg -l | grep *jdk* >> $output_file
   dpkg -l | grep *jre* >> $output_file
@@ -145,10 +145,8 @@ if [ -n "$(command -v yum)" ]; then
   rpm -qa *jre* >> $output_file
   rpm -qa *jdk* >> $output_file
   rpm -qa *sdk* >> $output_file
-  echo "***** Java Home if set *****" >> $output_file
-  echo $JAVA_HOME >> $output_file
   echo -e "\n" >> $output_file
- 
+  echo -e "\n" >> $output_file
 fi
 
 # List of installed packages (SUSE)
@@ -166,24 +164,16 @@ if [ -n "$(command -v zypper)" ]; then
   # repos check for SUSE
   zypper repos >> $output_file
   echo -e "\n" >> $output_file
+  echo -e "\n" >> $output_file
   # log4j lookup
   echo "checking for log4j vulnerability..."  >> $output_file
   echo Doing a file check using find, search papamaeter is log4j* >> $output_file
   echo for more ionfomation please see SUSE web site www.suse.com/c/suse-statement-on-log4j-log4shell-cve-2021-44228-vulnerability/ >> $output_file
   find / -xdev -type f -name log4j* | grep log4j* >> $output_file
   echo -e "\n" >> $output_file
-  echo "***** checking for java *****" >> $output_file
-  java --version >> $output_file 2>&1
-  echo -e "\n" >> $output_file
 
 fi
-echo "Script message ***** Running java check 1 *****"
 
-if [ -n "$(command -v java)" ]; then
-  echo "****** java test results******" >> $output_file
-  java --version >> $output_file
-  echo -e "\n" >> $output_file
-fi
 
 # root search for JDK\JRE
 echo "Script message ***** Running java file search this may take a while..."
@@ -191,6 +181,8 @@ echo "java file search" >> $output_file
 # exculde png svg tag javascript pom html files that contain "java""
 find / -xdev -name "java*" ! \( -name "*.png" -o -name "*.ui" -o -name "*.vi" -o -name "*.swidtag" -o -name "*.jml" -o -name "*.pyc" -o -name "*.md" -o -name "*.pdf" -o -name "*.png" -o -name "*.nasl" -o -name "*.nse" -o -name "*.py" -o -name "*.rb" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
 find / -xdev -name "*oracle*" ! \( -name "*.png" -o -name "*.ui" -o -name "*.vi" -o -name "*.swidtag" -o -name "*.jml" -o -name "*.pyc" -o -name "*.md" -o -name "*.pdf" -o -name "*.png" -o -name "*.nasl" -o -name "*.nse" -o -name "*.py" -o -name "*.rb" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
+echo -e "\n" >> $output_file
+echo -e "\n" >> $output_file
 # Find all java executables
 java_paths=$(find / -name 'java' -type f -print 2>/dev/null)
 
@@ -200,27 +192,47 @@ do
     # Get the version information
     version_info=$("$java_path" -version 2>&1)
 
-    # Check if it's Oracle Java
-    if echo "$version_info" | grep -q "Java(TM) SE Runtime Environment"; then
-        echo "Oracle Java found at $java_path" 
-        echo "$java_path" >> $output_file
+    # Check if it's Oracle Java JRE
+     if echo "$version_info" | grep -q "Java(TM) SE Runtime Environment"; then
+        echo -e "\033[0;31mOracle(sun) JAVA found at $java_path\033[0m"
+        echo "Oracle(sun) Java found at $java_path" >> $output_file
         echo "$version_info" >> $output_file
+        echo -e "\n" >> $output_file
     
     fi
+	 
+    # Check if it's Oracle JDK
+      if echo "$version_info" | grep -q "Java(TM) SE Development Kit"; then
+    	 echo -e "\033[0;31mOracle(sun) JAVA found at $java_path\033[0m"
+   	 echo "Oracle(sun) Java found at $java_path" >> $output_file
+	 echo "$version_info" >> $output_file
+	 echo -e "\n" >> $output_file
+	   
+	fi
 
     # Check if it's OpenJDK
-    if echo "$version_info" | grep -q "OpenJDK Runtime Environment"; then
-        echo "OpenJDK found at $java_path"  
+     if echo "$version_info" | grep -q "OpenJDK Runtime Environment"; then
+        echo -e "OpenJDK found at $java_path"
+        echo "OpenJDK found at $java_path" >> $output_file
         echo "$version_info" >> $output_file
-        echo "$java_path" >> $output_file
         echo -e "\n" >> $output_file
+			
     fi
 done
 
+echo "Script message ***** Running java env check *****"
+
+if [ -n "$(command -v java)" ]; then
+  echo -e "\033[33m****** JAVA env found check log for more info ******\033[0m"
+  echo "JAVA env check resula" >> $output_file
+  java --version >> $output_file
+  echo -e "\n" >> $output_file
+fi
+
 echo -e "\n" >> $output_file
-echo "Script message ***** checking users & groups *****"
 
 # Users and groups
+echo "Script message ***** checking users & groups *****"
 echo "****** Users and Groups cat etc/passwd & group ******" >> $output_file
 cat /etc/passwd >> $output_file
 echo -e "\n" >> $output_file
