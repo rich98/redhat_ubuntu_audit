@@ -223,9 +223,9 @@ done
 echo "Script message ***** Running java env check *****"
 
 if [ -n "$(command -v java)" ]; then
-  echo -e "\033[33m****** JAVA env found check log for more info ******\033[0m"
   echo "JAVA env check resula" >> $output_file
-  java --version >> $output_file
+  java_env=$(java --version 2>&1)
+  echo -e "\033[33m****** $java_env env found check log for more info ******\033[0m"
   echo -e "\n" >> $output_file
 fi
 
