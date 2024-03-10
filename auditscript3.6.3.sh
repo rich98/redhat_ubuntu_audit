@@ -52,7 +52,7 @@ done
 comp=`hostname`
 today=`date +%d-%m-%Y`
 output_file="BMN$bmn-$comp-system_audit-$today-$govclass.txt"
-scriptn="Linux auditscript 3.6.3.1"
+scriptn="Linux auditscript 3.6.3.2"
 
 # Notice
 echo "****** Security classification notice ******" 
@@ -183,6 +183,8 @@ find / -xdev -name "java*" ! \( -name "*.png" -o -name "*.ui" -o -name "*.vi" -o
 find / -xdev -name "*oracle*" ! \( -name "*.png" -o -name "*.ui" -o -name "*.vi" -o -name "*.swidtag" -o -name "*.jml" -o -name "*.pyc" -o -name "*.md" -o -name "*.pdf" -o -name "*.png" -o -name "*.nasl" -o -name "*.nse" -o -name "*.py" -o -name "*.rb" -o -name "*.svg" -o -name "*.tag" -o -name "*javascript*" -o -name "*.pom" -o -name "*.html" \) -type f -print >> $output_file
 echo -e "\n" >> $output_file
 echo -e "\n" >> $output_file
+echo "***** checking JAVA results *****" 
+echo "***** checking results *****"  >> $output_file
 # Find all java executables
 java_paths=$(find / -name 'java' -type f -print 2>/dev/null)
 
@@ -192,40 +194,50 @@ do
     # Get the version information
     version_info=$("$java_path" -version 2>&1)
 
-    # Check if it's Oracle Java JRE
-     if echo "$version_info" | grep -q "Java(TM) SE Runtime Environment"; then
+    # Check if it's Oracle Java JRE or JDK 1.6 tp 21
+     if echo "$version_info" | grep -q "Java(TM) SE Runtime Environment" || echo "$version_info" | grep -q "Java(TM) SE Development Kit"; then
         echo -e "\033[0;31mOracle(sun) JAVA found at $java_path\033[0m"
         echo "Oracle(sun) Java found at $java_path" >> $output_file
         echo "$version_info" >> $output_file
         echo -e "\n" >> $output_file
     
     fi
+     
+    # Check if it's Oracle Java 1.4 to 1.5 JRE or JDK
+     if echo "$version_info" | grep -q "Java(TM) 2 Runtime Environment" || echo "$version_info" | grep -q "Java(TM) 2 Development Kit"; then
+        echo -e "\033[0;31mOracle(sun) JAVA found at $java_path\033[0m"
+        echo "Oracle(sun) Java found at $java_path" >> $output_file
+        echo "$version_info" >> $output_file
+        echo -e "\n" >> $output_file
+    
+    fi
+    
+    # Chec# Check if the Java version is 1.2 or 1.3
+    if echo "$version_info" | grep -q "1.2"; then
+       echo -e "\033[0;31mOracle(sun) JAVA found at $java_path\033[0m"
+       echo "Oracle(sun) found at $java_path" >> $output_file
+       echo "$version_info" >> $output_file
+    
+    fi
 	 
-    # Check if it's Oracle JDK
-      if echo "$version_info" | grep -q "Java(TM) SE Development Kit"; then
-    	 echo -e "\033[0;31mOracle(sun) JAVA found at $java_path\033[0m"
-   	 echo "Oracle(sun) Java found at $java_path" >> $output_file
-	 echo "$version_info" >> $output_file
-	 echo -e "\n" >> $output_file
-	   
-	fi
-
     # Check if it's OpenJDK
      if echo "$version_info" | grep -q "OpenJDK Runtime Environment"; then
         echo -e "OpenJDK found at $java_path"
         echo "OpenJDK found at $java_path" >> $output_file
         echo "$version_info" >> $output_file
-        echo -e "\n" >> $output_file
-			
+        echo -e "\n" >> $output_file 
+        
     fi
+    
 done
 
 echo "Script message ***** Running java env check *****"
 
 if [ -n "$(command -v java)" ]; then
-  echo "JAVA env check resula" >> $output_file
+  echo "JAVA env check results" >> $output_file
   java_env=$(java --version 2>&1)
-  echo -e "\033[33m****** $java_env env found check log for more info ******\033[0m"
+  echo -e "\033[33m****** env found $java_env  ******\033[0m"
+  echo "$java_env" >> $output_file
   echo -e "\n" >> $output_file
 fi
 
